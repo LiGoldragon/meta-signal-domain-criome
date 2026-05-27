@@ -2,7 +2,7 @@
 
 `owner-signal-domain-criome` is the owner-only Signal contract for the
 `domain-criome` component. It controls domain registration, delegation,
-retirement, and projection policy.
+retirement, projection policy, and provider-neutral projection declarations.
 
 ## Boundary
 
@@ -20,12 +20,15 @@ it.
 - `Delegate(Delegation)` delegates a named branch.
 - `RetireDomain(Retirement)` retires a registered domain.
 - `SetPolicy(Policy)` changes projection policy.
+- `SetProjection(ProjectionDeclaration)` records the provider-neutral DNS and
+  redirect state a registered domain should project.
 
 ## Owns
 
 - Domain-registration authority.
 - Delegation authority.
 - Projection-policy directives.
+- Provider-neutral projection declarations.
 - Typed owner rejections.
 
 ## Does Not Own
