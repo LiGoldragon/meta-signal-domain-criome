@@ -43,3 +43,19 @@ it.
 - Depend on `signal-frame`, not deprecated `signal-core`.
 - Reuse public domain types from `signal-domain-criome`.
 - Keep provider names out of this contract.
+
+## Schema-engine upgrade track
+
+When this contract moves from `signal_channel!` to schema-derived generation,
+its schema lives in this repository and carries only owner Signal wire
+vocabulary:
+
+- `Input` roots for domain registration, delegation, retirement, projection
+  policy, and projection declaration mutations.
+- `Output` roots for accepted mutations and typed owner rejections.
+- Domain, delegation, policy, and projection-declaration payload types that
+  cross the owner Signal wire.
+
+Nexus decisions, SEMA state, registry tables, projection runtime, and daemon
+storage schemas live in `domain-criome`, not here. Ordinary resolution and
+projection messages live in `signal-domain-criome`, not in this owner contract.
