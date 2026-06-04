@@ -1,10 +1,10 @@
-use nota_codec::{Decoder, Encoder, NotaDecode, NotaEncode};
-use owner_signal_domain_criome::{
+use meta_signal_domain_criome::{
     Delegation, DelegationName, DelegationTarget, DomainName, DomainNameSystemRecord,
     DomainRegistered, Operation, OperationKind, Policy, PolicySet, ProjectionDeclaration,
     ProjectionDirective, ProjectionPolicy, ProjectionScope, RecordKind, RecordValue, Registration,
     Reply, ReplyKind,
 };
+use nota_codec::{Decoder, Encoder, NotaDecode, NotaEncode};
 use signal_frame::{RequestPayload, SignalOperationHeads};
 
 fn encode_to_text<T: NotaEncode>(value: &T) -> String {

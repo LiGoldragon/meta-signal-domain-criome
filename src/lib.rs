@@ -1,6 +1,6 @@
-//! Owner Signal contract for the domain-criome component.
+//! Meta Signal contract for the domain-criome component.
 //!
-//! This crate carries owner-only domain registry and projection-policy records.
+//! This crate carries meta (owner-only policy) domain registry and projection-policy records.
 
 use nota_codec::{NotaEnum, NotaRecord};
 use rkyv::{Archive, Deserialize as RkyvDeserialize, Serialize as RkyvSerialize};

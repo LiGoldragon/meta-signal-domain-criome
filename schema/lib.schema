@@ -1,0 +1,40 @@
+{}
+[RegisterDomain Delegate RetireDomain SetPolicy SetProjection]
+[DomainRegistered DelegationSet DomainRetired PolicySet ProjectionSet RequestRejected]
+{
+  RegisterDomain Registration
+  Delegate Delegation
+  RetireDomain Retirement
+  SetPolicy Policy
+  SetProjection ProjectionDeclaration
+
+  DomainRegistered { Domain * }
+  DelegationSet { DelegationName * Domain * }
+  DomainRetired { Domain * }
+  PolicySet { projection_policy_count Integer }
+  ProjectionSet { Domain * record_count Integer redirect_count Integer }
+  RequestRejected { operation OperationKind reason RejectionReason }
+
+  Registration { Domain * }
+  Delegation { DelegationName * Domain * DelegationTarget * }
+  Retirement { Domain * }
+  ProjectionDirective [Enable Disable]
+  ProjectionPolicy { Domain * ProjectionScope * ProjectionDirective * }
+  Policy { projections (Vec ProjectionPolicy) }
+  ProjectionDeclaration { Domain * records (Vec DomainNameSystemRecord) redirects (Vec RedirectRule) }
+  RejectionReason [DomainAlreadyRegistered DomainUnknown DelegationAlreadyExists DelegationUnknown ProjectionUnavailable]
+  OperationKind [RegisterDomain Delegate RetireDomain SetPolicy SetProjection]
+
+  Domain String
+  DomainName String
+  DelegationName String
+  DelegationTarget String
+  RecordValue String
+  UniformResourceLocator String
+  ProjectionScope [PublicRecords RedirectRules Everything]
+  RecordKind [AddressV4 AddressV6 CanonicalName Text]
+  RedirectStatus [Permanent Temporary]
+  PathTreatment [Preserve Replace]
+  DomainNameSystemRecord { name DomainName RecordKind * value RecordValue }
+  RedirectRule { source DomainName target UniformResourceLocator RedirectStatus * PathTreatment * }
+}

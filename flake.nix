@@ -1,5 +1,5 @@
 {
-  description = "owner-signal-domain-criome — owner Criome domain Signal contract";
+  description = "meta-signal-domain-criome — owner Criome domain Signal contract";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -68,7 +68,7 @@
         };
 
         devShells.default = pkgs.mkShell {
-          name = "owner-signal-domain-criome";
+          name = "meta-signal-domain-criome";
           packages = [
             pkgs.jujutsu
             toolchain

@@ -1,13 +1,13 @@
-# owner-signal-domain-criome Architecture
+# meta-signal-domain-criome Architecture
 
-`owner-signal-domain-criome` is the owner-only Signal contract for the
+`meta-signal-domain-criome` is the meta (owner-only policy) Signal contract for the
 `domain-criome` component. It controls domain registration, delegation,
 retirement, projection policy, and provider-neutral projection declarations.
 
 ## Boundary
 
 The ordinary `signal-domain-criome` contract resolves and projects domain
-meaning. This owner contract mutates the registry that gives that meaning
+meaning. This meta contract mutates the registry that gives that meaning
 authority.
 
 Provider-specific plan application remains outside this contract. The domain
@@ -47,15 +47,15 @@ it.
 ## Schema-engine upgrade track
 
 When this contract moves from `signal_channel!` to schema-derived generation,
-its schema lives in this repository and carries only owner Signal wire
+its schema lives in this repository and carries only meta Signal wire
 vocabulary:
 
 - `Input` roots for domain registration, delegation, retirement, projection
   policy, and projection declaration mutations.
 - `Output` roots for accepted mutations and typed owner rejections.
 - Domain, delegation, policy, and projection-declaration payload types that
-  cross the owner Signal wire.
+  cross the meta Signal wire.
 
 Nexus decisions, SEMA state, registry tables, projection runtime, and daemon
 storage schemas live in `domain-criome`, not here. Ordinary resolution and
-projection messages live in `signal-domain-criome`, not in this owner contract.
+projection messages live in `signal-domain-criome`, not in this meta contract.
