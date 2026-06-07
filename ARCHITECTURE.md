@@ -1,6 +1,6 @@
 # meta-signal-domain-criome Architecture
 
-`meta-signal-domain-criome` is the meta (owner-only policy) Signal contract for the
+`meta-signal-domain-criome` is the meta policy Signal contract for the
 `domain-criome` component. It controls domain registration, delegation,
 retirement, projection policy, and provider-neutral projection declarations.
 
@@ -29,7 +29,7 @@ it.
 - Delegation authority.
 - Projection-policy directives.
 - Provider-neutral projection declarations.
-- Typed owner rejections.
+- Typed meta-policy rejections.
 
 ## Does Not Own
 
@@ -52,7 +52,7 @@ vocabulary:
 
 - `Input` roots for domain registration, delegation, retirement, projection
   policy, and projection declaration mutations.
-- `Output` roots for accepted mutations and typed owner rejections.
+- `Output` roots for accepted mutations and typed meta-policy rejections.
 - Domain, delegation, policy, and projection-declaration payload types that
   cross the meta Signal wire.
 

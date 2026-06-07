@@ -1,6 +1,6 @@
 use std::{env, path::PathBuf};
 
-use schema_rust_next::build::CargoSchemaMetadata;
+use schema_rust_next::build::{CargoSchemaMetadata, GenerationDriver, GenerationPlan};
 
 fn main() {
     SchemaBuild::from_environment().run();
@@ -21,5 +21,14 @@ impl SchemaBuild {
         println!("cargo:rerun-if-changed=schema/lib.schema");
         CargoSchemaMetadata::new("meta-signal-domain-criome")
             .emit_schema_directory(&self.crate_root);
+        GenerationDriver::new(GenerationPlan::wire_contract(
+            &self.crate_root,
+            "meta-signal-domain-criome",
+            "0.1.0",
+        ))
+        .generate()
+        .expect("generate meta-signal-domain-criome schema artifacts")
+        .write_or_check("META_SIGNAL_DOMAIN_CRIOME_UPDATE_SCHEMA_ARTIFACTS")
+        .expect("checked-in meta-signal-domain-criome schema artifacts are fresh");
     }
 }

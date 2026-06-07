@@ -1,7 +1,7 @@
 # INTENT — meta-signal-domain-criome
 
-*The meta (owner-only policy) wire contract for the `domain-criome` component.
-Defines the typed request/reply channel that the domain owner uses to register,
+*The meta policy wire contract for the `domain-criome` component.
+Defines the typed request/reply channel that meta authority uses to register,
 delegate, and retire domains, set projection policy, and declare provider-neutral
 projection state.
 Companion to `ARCHITECTURE.md` and `Cargo.toml`. Maintenance: `primary/skills/repo-intent.md`.*
@@ -15,7 +15,7 @@ resolution and projection stays in `signal-domain-criome/INTENT.md`.
 
 ## Why this repo exists
 
-`meta-signal-domain-criome` is the **owner-only meta policy contract** for the
+`meta-signal-domain-criome` is the **meta policy contract** for the
 `domain-criome` component. It controls domain registration, delegation,
 retirement, projection policy, and provider-neutral projection declarations. The
 ordinary `signal-domain-criome` contract resolves and projects domain meaning;
@@ -36,11 +36,11 @@ The meta channel carries:
 - **`SetProjection(ProjectionDeclaration)`** — record the provider-neutral DNS and
   redirect state a registered domain should project.
 
-Replies carry accepted mutations and typed owner rejections.
+Replies carry accepted mutations and typed meta-policy rejections.
 
 ## Constraints
 
-- Owner-only registry-mutating authority enters through this crate; ordinary
+- Meta registry-mutating authority enters through this crate; ordinary
   resolution and projection stay in `signal-domain-criome`.
 - Provider names stay out of this contract — the registry is provider-neutral;
   `cloud` owns provider vocabulary.
@@ -51,7 +51,7 @@ Replies carry accepted mutations and typed owner rejections.
 - When this contract moves from `signal_channel!` to schema-derived generation,
   its schema lives in this repository and carries only meta Signal wire vocabulary
   (Input roots for the registry mutations, Output roots for accepted mutations and
-  typed owner rejections, and the payload types that cross the meta wire). Nexus
+  typed meta-policy rejections, and the payload types that cross the meta wire). Nexus
   decisions, SEMA state, registry tables, and projection runtime stay in
   `domain-criome`.
 

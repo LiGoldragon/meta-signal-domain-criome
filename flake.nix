@@ -1,5 +1,5 @@
 {
-  description = "meta-signal-domain-criome — owner Criome domain Signal contract";
+  description = "meta-signal-domain-criome — meta Criome domain Signal contract";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";

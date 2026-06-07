@@ -4,17 +4,15 @@ use meta_signal_domain_criome::{
     ProjectionDirective, ProjectionPolicy, ProjectionScope, RecordKind, RecordValue, Registration,
     Reply, ReplyKind,
 };
-use nota_codec::{Decoder, Encoder, NotaDecode, NotaEncode};
+use nota_next::{NotaEncode, NotaSource};
 use signal_frame::{RequestPayload, SignalOperationHeads};
 
 fn encode_to_text<T: NotaEncode>(value: &T) -> String {
-    let mut encoder = Encoder::new();
-    value.encode(&mut encoder).expect("encode");
-    encoder.into_string()
+    value.to_nota()
 }
 
 #[test]
-fn operations_are_owner_registry_verbs() {
+fn operations_are_meta_registry_verbs() {
     assert_eq!(
         <Operation as SignalOperationHeads>::HEADS,
         &[
@@ -41,8 +39,7 @@ fn registration_round_trips_through_nota() {
     let text = encode_to_text(&operation);
     assert_eq!(text, "(RegisterDomain ([goldragon.criome]))");
 
-    let mut decoder = Decoder::new(&text);
-    let decoded = Operation::decode(&mut decoder).expect("decode");
+    let decoded = NotaSource::new(&text).parse::<Operation>().expect("decode");
     assert_eq!(decoded, operation);
 }
 
@@ -99,13 +96,12 @@ fn replies_round_trip_through_nota() {
     assert_eq!(policy.kind(), ReplyKind::PolicySet);
 
     let text = encode_to_text(&registered);
-    let mut decoder = Decoder::new(&text);
-    let decoded = Reply::decode(&mut decoder).expect("decode");
+    let decoded = NotaSource::new(&text).parse::<Reply>().expect("decode");
     assert_eq!(decoded, registered);
 }
 
 #[test]
-fn owner_contract_has_no_provider_vocabulary() {
+fn meta_contract_has_no_provider_vocabulary() {
     let manifest = std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/Cargo.toml"))
         .expect("manifest");
     let source = std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/src/lib.rs"))
