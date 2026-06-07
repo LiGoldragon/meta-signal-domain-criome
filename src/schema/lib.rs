@@ -18,41 +18,26 @@ pub type SetPolicy = Policy;
 
 pub type SetProjection = ProjectionDeclaration;
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct DomainRegistered(pub Domain);
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct DelegationSet {
     pub delegation_name: DelegationName,
     pub domain: Domain,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct DomainRetired(pub Domain);
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct PolicySet(pub Integer);
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct ProjectionSet {
     pub domain: Domain,
@@ -60,27 +45,18 @@ pub struct ProjectionSet {
     pub redirect_count: Integer,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct RequestRejected {
     pub operation: OperationKind,
     pub reason: RejectionReason,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct Registration(pub Domain);
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct Delegation {
     pub delegation_name: DelegationName,
@@ -88,27 +64,18 @@ pub struct Delegation {
     pub delegation_target: DelegationTarget,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct Retirement(pub Domain);
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum ProjectionDirective {
     Enable,
     Disable,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct ProjectionPolicy {
     pub domain: Domain,
@@ -116,17 +83,11 @@ pub struct ProjectionPolicy {
     pub projection_directive: ProjectionDirective,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct Policy(pub Vec<ProjectionPolicy>);
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct ProjectionDeclaration {
     pub domain: Domain,
@@ -134,10 +95,7 @@ pub struct ProjectionDeclaration {
     pub redirects: Vec<RedirectRule>,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum RejectionReason {
     DomainAlreadyRegistered,
@@ -147,10 +105,7 @@ pub enum RejectionReason {
     ProjectionUnavailable,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum OperationKind {
     RegisterDomain,
@@ -172,10 +127,7 @@ pub type RecordValue = String;
 
 pub type UniformResourceLocator = String;
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum ProjectionScope {
     PublicRecords,
@@ -183,10 +135,7 @@ pub enum ProjectionScope {
     Everything,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum RecordKind {
     AddressV4,
@@ -195,30 +144,21 @@ pub enum RecordKind {
     Text,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum RedirectStatus {
     Permanent,
     Temporary,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum PathTreatment {
     Preserve,
     Replace,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct DomainNameSystemRecord {
     pub name: DomainName,
@@ -226,10 +166,7 @@ pub struct DomainNameSystemRecord {
     pub value: RecordValue,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct RedirectRule {
     pub source: DomainName,
@@ -238,10 +175,7 @@ pub struct RedirectRule {
     pub path_treatment: PathTreatment,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum Input {
     RegisterDomain(RegisterDomain),
@@ -251,10 +185,7 @@ pub enum Input {
     SetProjection(SetProjection),
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
-)]
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum Output {
     DomainRegistered(DomainRegistered),
@@ -719,17 +650,9 @@ const SIGNAL_SHORT_HEADER_BYTE_COUNT: usize = 8;
 pub enum SignalFrameError {
     ArchiveEncode,
     ArchiveDecode,
-    FrameTooShort {
-        found: usize,
-    },
-    UnknownHeader {
-        root_enum: &'static str,
-        header: u64,
-    },
-    HeaderMismatch {
-        expected: u64,
-        found: u64,
-    },
+    FrameTooShort { found: usize },
+    UnknownHeader { root_enum: &'static str, header: u64 },
+    HeaderMismatch { expected: u64, found: u64 },
 }
 impl std::fmt::Display for SignalFrameError {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -740,10 +663,7 @@ impl std::fmt::Display for SignalFrameError {
                 write!(formatter, "signal frame too short: {found} bytes")
             }
             Self::UnknownHeader { root_enum, header } => {
-                write!(
-                    formatter,
-                    "unknown {root_enum} short header 0x{header:016X}"
-                )
+                write!(formatter, "unknown {root_enum} short header 0x{header:016X}")
             }
             Self::HeaderMismatch { expected, found } => {
                 write!(
@@ -756,11 +676,17 @@ impl std::fmt::Display for SignalFrameError {
 }
 impl std::error::Error for SignalFrameError {}
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
 )]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
 pub enum InputRoute {
     RegisterDomain,
     Delegate,
@@ -769,11 +695,17 @@ pub enum InputRoute {
     SetProjection,
 }
 
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota_next::NotaDecode, nota_next::NotaEncode)
+#[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
+#[derive(
+    rkyv::Archive,
+    rkyv::Serialize,
+    rkyv::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
 )]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
 pub enum OutputRoute {
     DomainRegistered,
     DelegationSet,
@@ -809,31 +741,41 @@ impl Input {
             short_header::INPUT_RETIRE_DOMAIN => Ok(InputRoute::RetireDomain),
             short_header::INPUT_SET_POLICY => Ok(InputRoute::SetPolicy),
             short_header::INPUT_SET_PROJECTION => Ok(InputRoute::SetProjection),
-            _ => Err(SignalFrameError::UnknownHeader {
-                root_enum: "Input",
-                header,
-            }),
+            _ => {
+                Err(SignalFrameError::UnknownHeader {
+                    root_enum: "Input",
+                    header,
+                })
+            }
         }
     }
     pub fn encode_signal_frame(&self) -> Result<Vec<u8>, SignalFrameError> {
         let archive = rkyv::to_bytes::<rkyv::rancor::Error>(self)
             .map_err(|_| SignalFrameError::ArchiveEncode)?;
-        let mut frame = Vec::with_capacity(SIGNAL_SHORT_HEADER_BYTE_COUNT + archive.len());
+        let mut frame = Vec::with_capacity(
+            SIGNAL_SHORT_HEADER_BYTE_COUNT + archive.len(),
+        );
         frame.extend_from_slice(&self.short_header().to_le_bytes());
         frame.extend_from_slice(&archive);
         Ok(frame)
     }
-    pub fn decode_signal_frame(frame: &[u8]) -> Result<(InputRoute, Self), SignalFrameError> {
+    pub fn decode_signal_frame(
+        frame: &[u8],
+    ) -> Result<(InputRoute, Self), SignalFrameError> {
         if frame.len() < SIGNAL_SHORT_HEADER_BYTE_COUNT {
-            return Err(SignalFrameError::FrameTooShort { found: frame.len() });
+            return Err(SignalFrameError::FrameTooShort {
+                found: frame.len(),
+            });
         }
         let mut header_bytes = [0_u8; SIGNAL_SHORT_HEADER_BYTE_COUNT];
         header_bytes.copy_from_slice(&frame[..SIGNAL_SHORT_HEADER_BYTE_COUNT]);
         let header = u64::from_le_bytes(header_bytes);
         let route = Self::route_from_short_header(header)?;
-        let value =
-            rkyv::from_bytes::<Self, rkyv::rancor::Error>(&frame[SIGNAL_SHORT_HEADER_BYTE_COUNT..])
-                .map_err(|_| SignalFrameError::ArchiveDecode)?;
+        let value = rkyv::from_bytes::<
+            Self,
+            rkyv::rancor::Error,
+        >(&frame[SIGNAL_SHORT_HEADER_BYTE_COUNT..])
+            .map_err(|_| SignalFrameError::ArchiveDecode)?;
         let expected = value.short_header();
         if expected != header {
             return Err(SignalFrameError::HeaderMismatch {
@@ -866,7 +808,9 @@ impl Output {
             Self::RequestRejected(_) => short_header::OUTPUT_REQUEST_REJECTED,
         }
     }
-    pub fn route_from_short_header(header: u64) -> Result<OutputRoute, SignalFrameError> {
+    pub fn route_from_short_header(
+        header: u64,
+    ) -> Result<OutputRoute, SignalFrameError> {
         match header {
             short_header::OUTPUT_DOMAIN_REGISTERED => Ok(OutputRoute::DomainRegistered),
             short_header::OUTPUT_DELEGATION_SET => Ok(OutputRoute::DelegationSet),
@@ -874,31 +818,41 @@ impl Output {
             short_header::OUTPUT_POLICY_SET => Ok(OutputRoute::PolicySet),
             short_header::OUTPUT_PROJECTION_SET => Ok(OutputRoute::ProjectionSet),
             short_header::OUTPUT_REQUEST_REJECTED => Ok(OutputRoute::RequestRejected),
-            _ => Err(SignalFrameError::UnknownHeader {
-                root_enum: "Output",
-                header,
-            }),
+            _ => {
+                Err(SignalFrameError::UnknownHeader {
+                    root_enum: "Output",
+                    header,
+                })
+            }
         }
     }
     pub fn encode_signal_frame(&self) -> Result<Vec<u8>, SignalFrameError> {
         let archive = rkyv::to_bytes::<rkyv::rancor::Error>(self)
             .map_err(|_| SignalFrameError::ArchiveEncode)?;
-        let mut frame = Vec::with_capacity(SIGNAL_SHORT_HEADER_BYTE_COUNT + archive.len());
+        let mut frame = Vec::with_capacity(
+            SIGNAL_SHORT_HEADER_BYTE_COUNT + archive.len(),
+        );
         frame.extend_from_slice(&self.short_header().to_le_bytes());
         frame.extend_from_slice(&archive);
         Ok(frame)
     }
-    pub fn decode_signal_frame(frame: &[u8]) -> Result<(OutputRoute, Self), SignalFrameError> {
+    pub fn decode_signal_frame(
+        frame: &[u8],
+    ) -> Result<(OutputRoute, Self), SignalFrameError> {
         if frame.len() < SIGNAL_SHORT_HEADER_BYTE_COUNT {
-            return Err(SignalFrameError::FrameTooShort { found: frame.len() });
+            return Err(SignalFrameError::FrameTooShort {
+                found: frame.len(),
+            });
         }
         let mut header_bytes = [0_u8; SIGNAL_SHORT_HEADER_BYTE_COUNT];
         header_bytes.copy_from_slice(&frame[..SIGNAL_SHORT_HEADER_BYTE_COUNT]);
         let header = u64::from_le_bytes(header_bytes);
         let route = Self::route_from_short_header(header)?;
-        let value =
-            rkyv::from_bytes::<Self, rkyv::rancor::Error>(&frame[SIGNAL_SHORT_HEADER_BYTE_COUNT..])
-                .map_err(|_| SignalFrameError::ArchiveDecode)?;
+        let value = rkyv::from_bytes::<
+            Self,
+            rkyv::rancor::Error,
+        >(&frame[SIGNAL_SHORT_HEADER_BYTE_COUNT..])
+            .map_err(|_| SignalFrameError::ArchiveDecode)?;
         let expected = value.short_header();
         if expected != header {
             return Err(SignalFrameError::HeaderMismatch {
@@ -909,3 +863,4 @@ impl Output {
         Ok((route, value))
     }
 }
+
