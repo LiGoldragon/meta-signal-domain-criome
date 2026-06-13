@@ -37,7 +37,7 @@ fn registration_round_trips_through_nota() {
     });
 
     let text = encode_to_text(&operation);
-    assert_eq!(text, "(RegisterDomain ([goldragon.criome]))");
+    assert_eq!(text, "(RegisterDomain (goldragon.criome))");
 
     let decoded = NotaSource::new(&text).parse::<Operation>().expect("decode");
     assert_eq!(decoded, operation);
