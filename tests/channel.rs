@@ -1,12 +1,15 @@
 use meta_signal_domain_criome::{
-    Delegation, DelegationName, DelegationTarget, DomainName, DomainNameSystemRecord,
-    DomainRegistered, Operation, OperationKind, Policy, PolicySet, ProjectionDeclaration,
-    ProjectionDirective, ProjectionPolicy, ProjectionScope, RecordKind, RecordValue, Registration,
-    Reply, ReplyKind,
+    Delegation, DelegationName, DelegationTarget, DomainName, DomainNameSystemRecord, Operation,
+    OperationKind, Policy, ProjectionDeclaration, ProjectionDirective, ProjectionPolicy,
+    ProjectionScope, RecordKind, RecordValue, Registration,
 };
+#[cfg(feature = "nota-text")]
+use meta_signal_domain_criome::{DomainRegistered, PolicySet, Reply, ReplyKind};
+#[cfg(feature = "nota-text")]
 use nota_next::{NotaEncode, NotaSource};
 use signal_frame::{RequestPayload, SignalOperationHeads};
 
+#[cfg(feature = "nota-text")]
 fn encode_to_text<T: NotaEncode>(value: &T) -> String {
     value.to_nota()
 }
@@ -31,6 +34,7 @@ fn operations_are_meta_registry_verbs() {
 }
 
 #[test]
+#[cfg(feature = "nota-text")]
 fn registration_round_trips_through_nota() {
     let operation = Operation::RegisterDomain(Registration {
         domain: DomainName::new("goldragon.criome"),
@@ -84,6 +88,7 @@ fn projection_declarations_carry_provider_neutral_records() {
 }
 
 #[test]
+#[cfg(feature = "nota-text")]
 fn replies_round_trip_through_nota() {
     let registered = Reply::DomainRegistered(DomainRegistered {
         domain: DomainName::new("goldragon.criome"),
