@@ -301,11 +301,11 @@ pub struct RedirectRule {
 #[cfg_attr(feature = "nota-text", derive(nota_next::NotaDecode, nota_next::NotaEncode))]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum Input {
-    RegisterDomain(RegisterDomain),
-    Delegate(Delegate),
-    RetireDomain(RetireDomain),
-    SetPolicy(SetPolicy),
-    SetProjection(SetProjection),
+    RegisterDomain(Registration),
+    Delegate(Delegation),
+    RetireDomain(Retirement),
+    SetPolicy(Policy),
+    SetProjection(ProjectionDeclaration),
 }
 
 #[rustfmt::skip]
@@ -471,6 +471,24 @@ impl From<Integer> for PolicySet {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for PolicySet {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<u64> for PolicySet {
+    fn eq(&self, other: &u64) -> bool {
+        self.payload() == other
+    }
+}
+#[rustfmt::skip]
+impl PartialOrd<u64> for PolicySet {
+    fn partial_cmp(&self, other: &u64) -> Option<std::cmp::Ordering> {
+        self.payload().partial_cmp(other)
+    }
+}
 
 #[rustfmt::skip]
 impl Registration {
@@ -547,6 +565,24 @@ impl From<String> for Domain {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for Domain {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for Domain {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for Domain {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl DomainName {
@@ -564,6 +600,24 @@ impl DomainName {
 impl From<String> for DomainName {
     fn from(payload: String) -> Self {
         Self::new(payload)
+    }
+}
+#[rustfmt::skip]
+impl std::fmt::Display for DomainName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for DomainName {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for DomainName {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
     }
 }
 
@@ -585,6 +639,24 @@ impl From<String> for DelegationName {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for DelegationName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for DelegationName {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for DelegationName {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl DelegationTarget {
@@ -602,6 +674,24 @@ impl DelegationTarget {
 impl From<String> for DelegationTarget {
     fn from(payload: String) -> Self {
         Self::new(payload)
+    }
+}
+#[rustfmt::skip]
+impl std::fmt::Display for DelegationTarget {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for DelegationTarget {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for DelegationTarget {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
     }
 }
 
@@ -623,6 +713,24 @@ impl From<String> for RecordValue {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for RecordValue {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for RecordValue {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for RecordValue {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl UniformResourceLocator {
@@ -642,23 +750,41 @@ impl From<String> for UniformResourceLocator {
         Self::new(payload)
     }
 }
+#[rustfmt::skip]
+impl std::fmt::Display for UniformResourceLocator {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.payload().fmt(formatter)
+    }
+}
+#[rustfmt::skip]
+impl AsRef<str> for UniformResourceLocator {
+    fn as_ref(&self) -> &str {
+        self.payload().as_str()
+    }
+}
+#[rustfmt::skip]
+impl PartialEq<&str> for UniformResourceLocator {
+    fn eq(&self, other: &&str) -> bool {
+        self.payload() == other
+    }
+}
 
 #[rustfmt::skip]
 impl Input {
-    pub fn register_domain(payload: Registration) -> Self {
-        Self::RegisterDomain(RegisterDomain::new(payload))
+    pub fn register_domain(payload: Domain) -> Self {
+        Self::RegisterDomain(Registration::new(payload))
     }
     pub fn delegate(payload: Delegation) -> Self {
-        Self::Delegate(Delegate::new(payload))
+        Self::Delegate(payload)
     }
-    pub fn retire_domain(payload: Retirement) -> Self {
-        Self::RetireDomain(RetireDomain::new(payload))
+    pub fn retire_domain(payload: Domain) -> Self {
+        Self::RetireDomain(Retirement::new(payload))
     }
-    pub fn set_policy(payload: Policy) -> Self {
-        Self::SetPolicy(SetPolicy::new(payload))
+    pub fn set_policy(payload: Vec<ProjectionPolicy>) -> Self {
+        Self::SetPolicy(Policy::new(payload))
     }
     pub fn set_projection(payload: ProjectionDeclaration) -> Self {
-        Self::SetProjection(SetProjection::new(payload))
+        Self::SetProjection(payload)
     }
 }
 
@@ -685,36 +811,36 @@ impl Output {
 }
 
 #[rustfmt::skip]
-impl From<RegisterDomain> for Input {
-    fn from(payload: RegisterDomain) -> Self {
+impl From<Registration> for Input {
+    fn from(payload: Registration) -> Self {
         Self::RegisterDomain(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Delegate> for Input {
-    fn from(payload: Delegate) -> Self {
+impl From<Delegation> for Input {
+    fn from(payload: Delegation) -> Self {
         Self::Delegate(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<RetireDomain> for Input {
-    fn from(payload: RetireDomain) -> Self {
+impl From<Retirement> for Input {
+    fn from(payload: Retirement) -> Self {
         Self::RetireDomain(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<SetPolicy> for Input {
-    fn from(payload: SetPolicy) -> Self {
+impl From<Policy> for Input {
+    fn from(payload: Policy) -> Self {
         Self::SetPolicy(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<SetProjection> for Input {
-    fn from(payload: SetProjection) -> Self {
+impl From<ProjectionDeclaration> for Input {
+    fn from(payload: ProjectionDeclaration) -> Self {
         Self::SetProjection(payload)
     }
 }
