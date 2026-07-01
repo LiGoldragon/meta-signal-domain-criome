@@ -4,6 +4,12 @@
 `domain-criome` component. It controls domain registration, delegation,
 retirement, projection policy, and provider-neutral projection declarations.
 
+## 0.5 · Direction
+
+`meta-signal-domain-criome` is the meta authority contract for the `domain-criome` component. It mutates the registry that gives domain meaning authority; the ordinary `signal-domain-criome` contract resolves and projects that meaning. The split is load-bearing: provider-specific plan application stays outside this contract — the domain registry decides what should exist, while `cloud` decides how a provider applies it.
+
+When this contract moves from `signal_channel!` to schema-derived generation, its schema lives here and carries only meta Signal wire vocabulary; Nexus decisions, SEMA state, registry tables, projection runtime, and daemon storage schemas live in `domain-criome`.
+
 ## Boundary
 
 The ordinary `signal-domain-criome` contract resolves and projects domain
