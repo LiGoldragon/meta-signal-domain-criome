@@ -6,7 +6,7 @@ use meta_signal_domain_criome::{
 #[cfg(feature = "nota-text")]
 use meta_signal_domain_criome::{DomainRegistered, PolicySet, Reply, ReplyKind};
 #[cfg(feature = "nota-text")]
-use nota_next::{NotaEncode, NotaSource};
+use nota::{NotaEncode, NotaSource};
 use signal_frame::{RequestPayload, SignalOperationHeads};
 
 #[cfg(feature = "nota-text")]

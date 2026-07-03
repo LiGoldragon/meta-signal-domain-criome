@@ -3,8 +3,8 @@
 //! This crate carries meta policy domain registry and projection-policy records.
 
 #[cfg(not(feature = "nota-text"))]
-use nota_next::{Block, NotaDecodeError};
-use nota_next::{NotaDecode, NotaEncode};
+use nota::{Block, NotaDecodeError};
+use nota::{NotaDecode, NotaEncode};
 use rkyv::{Archive, Deserialize as RkyvDeserialize, Serialize as RkyvSerialize};
 use signal_frame::signal_channel;
 
