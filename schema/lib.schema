@@ -18,19 +18,19 @@
   SetProjection ProjectionDeclaration
 
   DomainRegistered Domain
-  DelegationSet { delegation_name DelegationName domain Domain }
+  DelegationSet { DelegationName Domain }
   DomainRetired Domain
   PolicySet Integer
-  ProjectionSet { domain Domain record_count Integer redirect_count Integer }
-  RequestRejected { operation OperationKind reason RejectionReason }
+  ProjectionSet { Domain record_count.Integer redirect_count.Integer }
+  RequestRejected { operation.OperationKind reason.RejectionReason }
 
   Registration Domain
-  Delegation { delegation_name DelegationName domain Domain delegation_target DelegationTarget }
+  Delegation { DelegationName Domain DelegationTarget }
   Retirement Domain
   ProjectionDirective [Enable Disable]
-  ProjectionPolicy { domain Domain projection_scope ProjectionScope projection_directive ProjectionDirective }
+  ProjectionPolicy { Domain ProjectionScope ProjectionDirective }
   Policy (Vector ProjectionPolicy)
-  ProjectionDeclaration { domain Domain records (Vector DomainNameSystemRecord) redirects (Vector RedirectRule) }
+  ProjectionDeclaration { Domain records.(Vector DomainNameSystemRecord) redirects.(Vector RedirectRule) }
   RejectionReason [DomainAlreadyRegistered DomainUnknown DelegationAlreadyExists DelegationUnknown ProjectionUnavailable]
   OperationKind [RegisterDomain Delegate RetireDomain SetPolicy SetProjection]
 
@@ -44,6 +44,6 @@
   RecordKind [AddressV4 AddressV6 CanonicalName Text]
   RedirectStatus [Permanent Temporary]
   PathTreatment [Preserve Replace]
-  DomainNameSystemRecord { name DomainName record_kind RecordKind value RecordValue }
-  RedirectRule { source DomainName target UniformResourceLocator redirect_status RedirectStatus path_treatment PathTreatment }
+  DomainNameSystemRecord { name.DomainName RecordKind value.RecordValue }
+  RedirectRule { source.DomainName target.UniformResourceLocator RedirectStatus PathTreatment }
 }
